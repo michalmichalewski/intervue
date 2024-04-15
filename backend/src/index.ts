@@ -1,13 +1,9 @@
-import fastify from 'fastify'
-const server = fastify()
+import appBuilder from './app'
 
-// Declare a route
-server.get('/', function (request, reply) {
-    reply.send({ hello: 'world' })
+const server = appBuilder({
+    log: console.log
 })
 
-
-// Run the server!
 server.listen({ port: 3000 }, function (err, address) {
     if (err) {
         server.log.error(err)
@@ -16,3 +12,5 @@ server.listen({ port: 3000 }, function (err, address) {
 
     console.log(`Server is now listening on ${address}`)
 })
+
+export default server
